@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using UserGhotala.Data;
 using UserGhotala.Data.Models;
-using Microsoft.EntityFrameworkCore.Proxies;
 
 namespace UserGhotala.Controllers
 {
@@ -23,11 +22,7 @@ namespace UserGhotala.Controllers
                 users = context.Users.Include(ur => ur.UserRoles).ToList();
             }
 
-            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
-            {
-                PreserveReferencesHandling = PreserveReferencesHandling.All,
-                ReferenceLoopHandling = ReferenceLoopHandling.Serialize
-            };
+           
 
             return Ok(users);
         }

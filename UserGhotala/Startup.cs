@@ -28,6 +28,7 @@ namespace UserGhotala
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDbContext<UserContext>(options => options.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = UserGhotala; Trusted_Connection = True;"));
+            services.AddMvc().AddJsonOptions(options => { options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
         }
