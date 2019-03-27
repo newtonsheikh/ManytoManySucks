@@ -21,9 +21,6 @@ namespace UserGhotala.Controllers
             using (var context = new UserContext()) {
                 users = context.Users.Include(ur => ur.UserRoles).ToList();
             }
-
-           
-
             return Ok(users);
         }
 
@@ -34,6 +31,22 @@ namespace UserGhotala.Controllers
             return Ok(null);
         }
 
+        [Route("api/AddUser")]
+        [HttpPost("api/AddUser")]
+        public async Task<IActionResult> AddUser([FromBody]User user)
+        {
+
+            try {
+                using (var context = new UserContext()) {
+                    context.Users.Add(user);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex) {
+
+            }
+            return Ok("Done!");
+        }
 
 
     }
